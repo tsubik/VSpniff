@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSProjectMissingFiles.CmdLet", "VSProjectMissingFiles.CmdLet\VSProjectMissingFiles.CmdLet.csproj", "{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSProjectMissingFiles.Core", "VSProjectMissingFiles.Core\VSProjectMissingFiles.Core.csproj", "{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{8AF20DC4-DCEE-4F5A-81DC-8ADE24B84395}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

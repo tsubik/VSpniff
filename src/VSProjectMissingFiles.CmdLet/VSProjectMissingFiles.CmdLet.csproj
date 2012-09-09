@@ -8,8 +8,8 @@
     <ProjectGuid>{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CheckVSMissingFilesCmdLet</RootNamespace>
-    <AssemblyName>CheckVSMissingFilesCmdLet</AssemblyName>
+    <RootNamespace>VSProjectMissingFiles.CmdLet</RootNamespace>
+    <AssemblyName>VSProjectMissingFiles.CmdLet</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckVSMissingFilesCmdlet.cs" />
+    <Compile Include="FindMissingFilesCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SnapIn.cs">
       <SubType>Component</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VSProjectMissingFiles.Core\VSProjectMissingFiles.Core.csproj">
+      <Project>{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}</Project>
+      <Name>VSProjectMissingFiles.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

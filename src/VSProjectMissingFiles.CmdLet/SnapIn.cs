@@ -12,12 +12,12 @@ namespace CheckVSMissingFilesCmdLet
     {
         public override string Description
         {
-            get { return "CheckmissingFiles"; }
+            get { return "VSProjectMissingFiles"; }
         }
 
         public override string Name
         {
-            get { return "CheckmissingFiles"; }
+            get { return "VSProjectMissingFiles"; }
         }
 
         public override string Vendor
