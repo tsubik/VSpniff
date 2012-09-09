@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace CheckVSMissingFiles.Core
+namespace vspniff.Core
 {
     public struct Config
     {

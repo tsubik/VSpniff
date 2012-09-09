@@ -8,8 +8,8 @@
     <ProjectGuid>{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VSProjectMissingFiles.Core</RootNamespace>
-    <AssemblyName>VSProjectMissingFiles.Core</AssemblyName>
+    <RootNamespace>vspniff.Core</RootNamespace>
+    <AssemblyName>vspniff.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

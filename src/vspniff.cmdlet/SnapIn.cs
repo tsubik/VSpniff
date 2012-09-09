@@ -5,7 +5,7 @@ using System.Text;
 using System.Management.Automation;
 using System.ComponentModel;
 
-namespace CheckVSMissingFilesCmdLet
+namespace vspniff.Cmdlet
 {
     [RunInstaller(true)]
     public class SnapIn : PSSnapIn

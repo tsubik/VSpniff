@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Xml;
 
-namespace CheckVSMissingFiles.Core
+namespace vspniff.Core
 {
     public class MissingFilesSearcher
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CheckVSMissingFiles.Core
+namespace vspniff.Core
 {
     public static class Extensions
     {

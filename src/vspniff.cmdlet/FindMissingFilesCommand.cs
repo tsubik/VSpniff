@@ -6,9 +6,9 @@ using System.Management.Automation;
 using System.IO;
 using System.Xml.Linq;
 using System.Xml;
-using CheckVSMissingFiles.Core;
+using vspniff.Core;
 
-namespace CheckVSMissingFilesCmdLet
+namespace vspniff.Cmdlet
 {
     [Cmdlet(VerbsCommon.Find,"MissingFiles")]
     public class FindMissingFilesCommand : PSCmdlet
