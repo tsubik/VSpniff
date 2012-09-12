@@ -3,7 +3,7 @@ VSpniff - Visual Studio project not included files finder
 
 VSpniff is a simple tool to lookup for some missing files references in the Visual Studio project xml file. 
 
-Instalation
+Installation
 -----------
 
 You need have powershell installed.
