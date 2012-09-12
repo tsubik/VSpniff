@@ -1,0 +1,12 @@
+#This is sample configuration file for this project
+#For more info go to http://github.com/tsubik/vspniff
+#Properties info
+#Mode - it is the way that the module will threat your options
+# append  - it will append your options to current context options
+# override  - in this and subdirs will only take this file options (unless in subdire there is 
+#excludedExtensions - files with these extensions will not be listed as missing files
+#excludedDirs - program will not be looking in these locations for missing files (That are relative dirs to founded project file dir)
+
+mode: override
+excludedExtensions: user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib
+excludedDirs: bin, obj
