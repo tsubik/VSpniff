@@ -8,10 +8,7 @@ Instalation
 
 You need have powershell installed.
 
-
-**Download library, compile and manually install by installutil**
-
-1. Download repository and compile it.
+1. Download latest version or whole repository and compile it by yourself.
 2. Open Visual Studio command prompt 
 
 <blockquote>
@@ -47,7 +44,7 @@ Let's assume our solution have some not included view:
 Just type in package manager console
 
 <blockquote>
-PM> Find-MissingFiles
+Find-MissingFiles
 </blockquote>
 
 And all potencially missing files will be listened.
@@ -55,11 +52,11 @@ And all potencially missing files will be listened.
 You can specify directory where module should start looking for project file
 
 <blockquote>
-PM> Find-MissingFiles -d /SomeRelativeDirectory
+Find-MissingFiles -d /SomeRelativeDirectory
 </blockquote>
 
 <blockquote>
-PM> Find-MissingFiles -d d:\dev\myprojects\sample
+Find-MissingFiles -d d:\dev\myprojects\sample
 </blockquote>
 
 
@@ -75,7 +72,7 @@ Sample config file (also this is a default hard-coded configuration)
 #This is sample configuration file for this project<br>
 #For more info go to http://github.com/tsubik/vspniff<br>
 #Properties info<br>
-#Mode - it is the way that the module will threat your options<br>
+#Mode - it is the way that the module will treat your options<br>
 # append  - it will append your options to current context options<br>
 # override  - in this and subdirs will only take this file options (unless in subdirs are also some config files)<br> 
 #excludedExtensions - files with these extensions will not be listed as missing files<br>
