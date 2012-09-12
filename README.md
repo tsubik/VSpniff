@@ -15,7 +15,8 @@ You need have powershell installed.
 installutil -i VSpniff.Cmdlet.dll
 </blockquote>
 
-3. Add snapin to your powershell profile file. In the package manager console.
+3. Add snapin to your powershell profile file.<br> 
+In the package manager console.
 
 <blockquote>
 notepad $profile
@@ -83,7 +84,7 @@ And all potentially missing files will be listed.
 You can specify directory where the module should start looking for project files
 
 <blockquote>
-Find-MissingFiles -d /SomeRelativeDirectory
+Find-MissingFiles -d ./SomeRelativeDirectory
 </blockquote>
 
 <blockquote>
