@@ -54,7 +54,11 @@ There is a option to specify which types of files will not be treated as a poten
 
 Only what do you have to do is add a simple file to your main solution directory or some subdirs (depends on your needs)
 
-Sample config file (also this is a default hard-coded configuration so you do not have to add any file if you happy with below configuration)
+
+Sample config file (also this is a default hard-coded configuration so you do not have to add any file if you happy with below configuration)<br>
+All config file must have .vspniff extensions
+
+config.vspniff
 <blockquote>
 #This is sample configuration file for this project<br>
 #For more info go to http://github.com/tsubik/vspniff<br>
