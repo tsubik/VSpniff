@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace vspniff.Core
+namespace VSpniff.Core
 {
     public static class Extensions
     {
@@ -19,6 +19,18 @@ namespace vspniff.Core
                 return builder.ToString().TrimEnd(new char[] { delimiter });
             }
             return string.Empty;
+        }
+
+        public static bool In(this string str, params string[] matches)
+        {
+            foreach(var match in matches)
+            {
+                if (str == match)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -6,23 +6,32 @@ using System.Management.Automation;
 using System.IO;
 using System.Xml.Linq;
 using System.Xml;
-using vspniff.Core;
+using VSpniff.Core;
 
-namespace vspniff.Cmdlet
+namespace VSpniff.Cmdlet
 {
     [Cmdlet(VerbsCommon.Find,"MissingFiles")]
     public class FindMissingFilesCommand : PSCmdlet
     {
 
         [Alias("d")]
-        [Parameter(Position = 0, Mandatory = true)]
+        [Parameter(Position = 0, Mandatory = false)]
         public string Directory { get; set; }
 
         protected override void ProcessRecord()
         {
             
             WriteObject("######## Checking for missing references to files started ##############");
-            string dirPath = GetUnresolvedProviderPathFromPSPath(Directory);
+            string directoryRelative;
+            if (!string.IsNullOrEmpty(Directory))
+            {
+                directoryRelative = Directory;
+            }
+            else
+            {
+                directoryRelative = ".";
+            }
+            string dirPath = GetUnresolvedProviderPathFromPSPath(directoryRelative);
             WriteObject("Starting in directory: " + dirPath);
             MissingFilesSearcher searcher = new MissingFilesSearcher();
             searcher.MissingFileFound += new MissingFilesSearcher.StringEventHandler(searcher_MissingFileFound);

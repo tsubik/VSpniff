@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Xml;
 
-namespace vspniff.Core
+namespace VSpniff.Core
 {
     public class MissingFilesSearcher
     {
@@ -56,7 +56,7 @@ namespace vspniff.Core
 
         private void LookForProjectFile(DirectoryInfo dir, Config currentConfig)
         {
-            FileInfo projectFile = dir.GetFiles().Where(f => f.Extension == ".csproj").FirstOrDefault();
+            FileInfo projectFile = dir.GetFiles().Where(f => f.Extension.In(".csproj",".vbproj")).FirstOrDefault();
             LookForConfigFileAndMaybeChangeConfiguration(dir, ref currentConfig);
 
             if (projectFile != null)
@@ -68,7 +68,7 @@ namespace vspniff.Core
                 XmlNamespaceManager nm = new XmlNamespaceManager(doc.NameTable);
                 nm.AddNamespace("x", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-                var projectfiles = doc.SelectNodes("/x:Project/x:ItemGroup/*[self::x:Compile or self::x:Content or self::x:Nones]/@Include", nm)
+                var projectfiles = doc.SelectNodes("/x:Project/x:ItemGroup/*[self::x:Compile or self::x:Content or self::x:None]/@Include", nm)
                     .Cast<XmlNode>()
                     .Select(x => x.Value)
                     .ToArray();

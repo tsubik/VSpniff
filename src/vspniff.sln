@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vspniff.Cmdlet", "vspniff.cmdlet\vspniff.Cmdlet.csproj", "{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSpniff.Cmdlet", "vspniff.cmdlet\VSpniff.Cmdlet.csproj", "{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vspniff.Core", "vspniff.core\vspniff.Core.csproj", "{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSpniff.Core", "vspniff.core\VSpniff.Core.csproj", "{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{8AF20DC4-DCEE-4F5A-81DC-8ADE24B84395}"
+	ProjectSection(SolutionItems) = preProject
+		config\config.cmf = config\config.cmf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
