@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSpniff.Core", "vspniff.cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{8AF20DC4-DCEE-4F5A-81DC-8ADE24B84395}"
 	ProjectSection(SolutionItems) = preProject
-		config\config.cmf = config\config.cmf
+		config\config.vspniff = config\config.vspniff
 	EndProjectSection
 EndProject
 Global

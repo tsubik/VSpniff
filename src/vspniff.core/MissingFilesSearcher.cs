@@ -90,7 +90,8 @@ namespace VSpniff.Core
 
         private void LookForConfigFileAndMaybeChangeConfiguration(DirectoryInfo currentDir, ref Config currentConfig)
         {
-            FileInfo configFile = currentDir.GetFiles().Where(f => f.Name.ToLower() == "config.cmf").FirstOrDefault();
+            //look for any file with this extension
+            FileInfo configFile = currentDir.GetFiles().Where(f => f.Name.ToLower().EndsWith(".vspniff")).FirstOrDefault();
             if (configFile != null)
             {
                 Config newConfig = new Config();

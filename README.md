@@ -15,13 +15,13 @@ You need have powershell installed.
 installutil -i VSpniff.Cmdlet.dll
 </blockquote>
 
-3. Add snapin to your powershell profile file. In package manager console.
+3. Add snapin to your powershell profile file. In the package manager console.
 
 <blockquote>
 notepad $profile
 </blockquote> 
 
-In file add
+In the file add
 
 <blockquote>
 Add-PSSnapIn VSpniff
@@ -33,41 +33,27 @@ Save and close file. Restart shell or type
 . $profile
 </blockquote>
 
-Done
+Done.
 
-Example
--------
+Uninstallation
+-------------
 
-Let's assume our solution have some not included view:
-~/Views/Account/Login.cshtml
-
-Just type in package manager console
-
+Close all Visual studios if you add cmdlet to the nuget profile, and all powershell's consoles if you add to powershell profile.<br>
+Go to the directory where you have vspniff.cmdlet.dll
 <blockquote>
-Find-MissingFiles
+installutil /u VSpniff.Cmdlet.dll
 </blockquote>
 
-And all potencially missing files will be listened.
-
-You can specify directory where module should start looking for project file
-
-<blockquote>
-Find-MissingFiles -d /SomeRelativeDirectory
-</blockquote>
-
-<blockquote>
-Find-MissingFiles -d d:\dev\myprojects\sample
-</blockquote>
-
+Done.
 
 Configuration
 -------------
 
-There is a option to specify which types of files will not be treated as potentially missing and also in which directories searching will not be performed.
+There is a option to specify which types of files will not be treated as a potentially missing and also in which directories searching will not be performed.
 
 Only what do you have to do is add a simple file to your main solution directory or some subdirs (depends on your needs)
 
-Sample config file (also this is a default hard-coded configuration)
+Sample config file (also this is a default hard-coded configuration so you do not have to add any file if you happy with below configuration)
 <blockquote>
 #This is sample configuration file for this project<br>
 #For more info go to http://github.com/tsubik/vspniff<br>
@@ -83,7 +69,26 @@ excludedExtensions: user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, 
 excludedDirs: bin, obj<br>
 </blockquote>
 
+Example
+-------
 
+Just type in the package manager console
+
+<blockquote>
+Find-MissingFiles
+</blockquote>
+
+And all potentially missing files will be listed.
+
+You can specify directory where the module should start looking for project files
+
+<blockquote>
+Find-MissingFiles -d /SomeRelativeDirectory
+</blockquote>
+
+<blockquote>
+Find-MissingFiles -d d:\dev\myprojects\sample
+</blockquote>
 
 Copyright
 --------

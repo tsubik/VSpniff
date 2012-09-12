@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CheckVSMissingFiles.Core")]
+[assembly: AssemblyTitle("VSpniff core lib")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CheckVSMissingFiles.Core")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyProduct("VSpniff")]
+[assembly: AssemblyCopyright("Copyright ©  2012 Tomasz Subik")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
