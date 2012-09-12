@@ -8,7 +8,7 @@ Instalation
 
 You need have powershell installed.
 
-1. Download latest version or whole repository and compile it by yourself.
+1. Download [the latest version](https://github.com/downloads/tsubik/VSpniff/vspniff%201.0.ZIP) or whole repository and compile it by yourself.
 2. Open Visual Studio command prompt 
 
 <blockquote>
