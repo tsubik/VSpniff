@@ -8,14 +8,21 @@ Installation
 
 You need have powershell installed.
 
-1. Download [the latest version](https://github.com/downloads/tsubik/VSpniff/vspniff%201.0.ZIP) or whole repository and compile it by yourself.
-2. Open Visual Studio command prompt 
+Download [the latest version](https://github.com/downloads/tsubik/VSpniff/vspniff%201.0.ZIP) or whole repository and compile it by yourself.
+
+Open Visual Studio command prompt 
 
 <blockquote>
 installutil -i VSpniff.Cmdlet.dll
 </blockquote>
 
-3. Add snapin to your powershell profile file.<br> 
+Check if your nuget profile file exists, if not create empty file. To obtain current path to nuget profile file in the PM console type:
+
+<blockquote>
+$profile
+</blockquote> 
+
+Add snapin to your nuget powershell profile file.<br> 
 In the package manager console.
 
 <blockquote>
@@ -35,6 +42,24 @@ Save and close file. Restart shell or type
 </blockquote>
 
 Done.
+
+Troubleshooting
+--------------
+
+There could be some troubles with tool installation due some security policy and fact that it was written in .NET 4.0
+
+**Problem:** Installutil error "Could not load file or assembly .... or one of it's dependencies. Operation not supported. (Exception from HRESULT: 0x80131515)."
+
+**Solution:** vspniff.cmdlet.dll could be blocked, because it comes from another computer. So go to properties of this dll and simply unblock it.
+
+If you have an another. Please write down in comments.
+
+-----
+
+
+
+
+
 
 Uninstallation
 -------------
