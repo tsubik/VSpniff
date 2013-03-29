@@ -2,7 +2,7 @@
 // MUST match guids.h
 using System;
 
-namespace TomaszSubik.VSpniff_VSPackage
+namespace VSpniff.VSPackage
 {
     static class GuidList
     {

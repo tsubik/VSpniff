@@ -2,7 +2,7 @@
 // MUST match PkgCmdID.h
 using System;
 
-namespace TomaszSubik.VSpniff_VSPackage
+namespace VSpniff.VSPackage
 {
     static class PkgCmdIDList
     {

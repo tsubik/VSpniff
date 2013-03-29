@@ -10,8 +10,9 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using EnvDTE;
 using VSpniff.Core;
+using VSpniff.VSPackage.Extensions;
 
-namespace TomaszSubik.VSpniff_VSPackage
+namespace VSpniff.VSPackage
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -74,6 +75,42 @@ namespace TomaszSubik.VSpniff_VSPackage
             }
             owp = null;
             dte = (DTE)GetService(typeof(DTE));
+            CreateVSpniffOutputPane();
+        }
+        #endregion
+
+        /// <summary>
+        /// This function is the callback used to execute a command when the a menu item is clicked.
+        /// See the Initialize method to see how the menu item is associated to this function using
+        /// the OleMenuCommandService service and the MenuCommand class.
+        /// </summary>
+        private void MenuItemCallback(object sender, EventArgs e)
+        {
+            Window window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
+            window.Activate();
+            owp.Activate();
+            owp.OutputLine("######## Checking for missing references to files started ##############");
+            string dirPath = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
+            owp.OutputLine("Starting in directory: " + dirPath);
+            MissingFilesSearcher searcher = new MissingFilesSearcher();
+            searcher.MissingFileFound += new MissingFilesSearcher.StringEventHandler(searcher_MissingFileFound);
+            searcher.ProjectFound += new MissingFilesSearcher.StringEventHandler(searcher_ProjectFound);
+            searcher.Search(dirPath);
+            owp.OutputLine("######## Checking for missing references to files ends ##############");
+        }
+
+        void searcher_ProjectFound(object sender, string e)
+        {
+            owp.OutputLine("----Project found : " + e);
+        }
+
+        void searcher_MissingFileFound(object sender, string e)
+        {
+            owp.OutputLine("Potentially missing file " + e);
+        }
+
+        private void CreateVSpniffOutputPane()
+        {
             Window window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
             OutputWindow outputWindow = (OutputWindow)window.Object;
             foreach (OutputWindowPane pane in outputWindow.OutputWindowPanes)
@@ -88,40 +125,6 @@ namespace TomaszSubik.VSpniff_VSPackage
             {
                 owp = outputWindow.OutputWindowPanes.Add("VSpniff");
             }
-        }
-        #endregion
-
-        /// <summary>
-        /// This function is the callback used to execute a command when the a menu item is clicked.
-        /// See the Initialize method to see how the menu item is associated to this function using
-        /// the OleMenuCommandService service and the MenuCommand class.
-        /// </summary>
-        private void MenuItemCallback(object sender, EventArgs e)
-        {
-            owp.Activate();
-            owp.OutputString("######## Checking for missing references to files started ##############");
-            owp.OutputString(Environment.NewLine);
-            string dirPath = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
-            owp.OutputString("Starting in directory: " + dirPath);
-            owp.OutputString(Environment.NewLine);
-            MissingFilesSearcher searcher = new MissingFilesSearcher();
-            searcher.MissingFileFound += new MissingFilesSearcher.StringEventHandler(searcher_MissingFileFound);
-            searcher.ProjectFound += new MissingFilesSearcher.StringEventHandler(searcher_ProjectFound);
-            searcher.Search(dirPath);
-            owp.OutputString("######## Checking for missing references to files ends ##############");
-            owp.OutputString(Environment.NewLine);
-        }
-
-        void searcher_ProjectFound(object sender, string e)
-        {
-            owp.OutputString("----Project found : " + e);
-            owp.OutputString(Environment.NewLine);
-        }
-
-        void searcher_MissingFileFound(object sender, string e)
-        {
-            owp.OutputString("Potentially missing file " + e);
-            owp.OutputString(Environment.NewLine);
         }
     }
 }
