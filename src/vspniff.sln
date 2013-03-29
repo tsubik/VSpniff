@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSpniff.Cmdlet", "vspniff.cmdlet\VSpniff.Cmdlet.csproj", "{DBAADB3C-C6F2-4E3F-9AA4-B4C93B5EB9D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSpniff.Core", "vspniff.core\VSpniff.Core.csproj", "{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}"
@@ -8,6 +8,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{8AF20DC4-DCEE-4F5A-81DC-8ADE24B84395}"
 	ProjectSection(SolutionItems) = preProject
 		config\config.vspniff = config\config.vspniff
+		VSpniff.VSPackage\Key.snk = VSpniff.VSPackage\Key.snk
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSpniff.VSPackage", "VSpniff.VSPackage\VSpniff.VSPackage.csproj", "{B0D579D0-03DC-479B-8A79-F2919CAC6ADB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "key", "key", "{C35707F4-4172-486A-A09B-F5CA27E1F883}"
+	ProjectSection(SolutionItems) = preProject
+		VSpniff.VSPackage\Key.snk = VSpniff.VSPackage\Key.snk
 	EndProjectSection
 EndProject
 Global
@@ -24,6 +32,10 @@ Global
 		{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7591DE3-2688-46B6-B960-54C5D3BCE7FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0D579D0-03DC-479B-8A79-F2919CAC6ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0D579D0-03DC-479B-8A79-F2919CAC6ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0D579D0-03DC-479B-8A79-F2919CAC6ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D579D0-03DC-479B-8A79-F2919CAC6ADB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
