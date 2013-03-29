@@ -1,0 +1,3 @@
+﻿TODO list
+- new command to context menu - creating config file in choosen location
+- edit config file for choosen location

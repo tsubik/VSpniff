@@ -44,8 +44,10 @@
       <Group guid="guidVSpniff_VSPackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
       </Group>
-      
-
+     
+      <Group guid="guidVSpniff_VSPackageCmdSet" id="ContextMenuProjNodeGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE"/>
+      </Group>
 
     </Groups>
     
@@ -60,17 +62,21 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-
       <Button guid="guidVSpniff_VSPackageCmdSet" id="cmdidFindMissingFiles" priority="0x0100" type="Button">
-        <Parent guid="guidVSpniff_VSPackageCmdSet" id="MyMenuGroup" />
+        <Parent guid="guidVSpniff_VSPackageCmdSet" id="MyMenuGroup" />    
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Find missing files</ButtonText>
         </Strings>
       </Button>
-
-
-
+      
+      <Button guid="guidVSpniff_VSPackageCmdSet" id="cmdidFindMissingFiles" priority="0x0100" type="Button">
+        <Parent guid="guidVSpniff_VSPackageCmdSet" id="ContextMenuProjNodeGroup" />    
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Find missing files</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
    
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -96,12 +102,10 @@
     
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidVSpniff_VSPackageCmdSet" value="{518d4dcd-a613-43dd-b3aa-612f4cb7ce3b}">
-
       <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="ContextMenuProjNodeGroup" value="0x1021" />
       <IDSymbol name="cmdidFindMissingFiles" value="0x0100" />
     </GuidSymbol>
-    
-    
     
     <GuidSymbol name="guidImages" value="{337d85e4-7d67-44b8-97f3-079e0d9b3b82}" >
       <IDSymbol name="bmpPic1" value="1" />

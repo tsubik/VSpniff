@@ -89,14 +89,32 @@ namespace VSpniff.VSPackage
             Window window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
             window.Activate();
             owp.Activate();
-            owp.OutputLine("######## Checking for missing references to files started ##############");
-            string dirPath = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
-            owp.OutputLine("Starting in directory: " + dirPath);
-            MissingFilesSearcher searcher = new MissingFilesSearcher();
-            searcher.MissingFileFound += new MissingFilesSearcher.StringEventHandler(searcher_MissingFileFound);
-            searcher.ProjectFound += new MissingFilesSearcher.StringEventHandler(searcher_ProjectFound);
-            searcher.Search(dirPath);
-            owp.OutputLine("######## Checking for missing references to files ends ##############");
+            if (dte.Solution.IsOpen)
+            {
+                string dirPath = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
+                
+                //checking if project is selected then taking project path
+                foreach(SelectedItem item in dte.SelectedItems)
+                {
+                    if(item.Project is Project)
+                    {
+                        dirPath = System.IO.Path.GetDirectoryName(item.Project.FullName); 
+                        break;
+                    }
+                }
+
+                owp.OutputLine("######## Checking for missing references to files started ##############");
+                owp.OutputLine("Starting in directory: " + dirPath);
+                MissingFilesSearcher searcher = new MissingFilesSearcher();
+                searcher.MissingFileFound += new MissingFilesSearcher.StringEventHandler(searcher_MissingFileFound);
+                searcher.ProjectFound += new MissingFilesSearcher.StringEventHandler(searcher_ProjectFound);
+                searcher.Search(dirPath);
+                owp.OutputLine("######## Checking for missing references to files ends ##############");
+            }
+            else
+            {
+                owp.OutputLine("######## First, you should open your solution or project ##############");
+            }
         }
 
         void searcher_ProjectFound(object sender, string e)
