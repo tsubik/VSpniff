@@ -3,7 +3,7 @@ VSpniff - Visual Studio project not included files finder
 
 VSpniff is a simple tool to lookup for some missing files references in the Visual Studio project xml file. 
 
-Installation
+Installation as a Powershell cmdlet
 -----------
 
 You need have powershell installed.
@@ -72,6 +72,12 @@ installutil /u VSpniff.Cmdlet.dll
 
 Done.
 
+Visual Studio Extension
+------------
+
+Just open extension manager and search for Vspniff. Here you go direct [http://visualstudiogallery.msdn.microsoft.com/99f0e072-0e93-4dcc-84d1-a8089a56a8d5](http://visualstudiogallery.msdn.microsoft.com/99f0e072-0e93-4dcc-84d1-a8089a56a8d5)
+
+
 Configuration
 -------------
 
@@ -99,7 +105,7 @@ excludedExtensions: user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, 
 excludedDirs: bin, obj<br>
 </blockquote>
 
-Example
+Using when you install as a powershell cmdlet
 -------
 
 Just type in the package manager console
@@ -119,6 +125,15 @@ Find-MissingFiles -d ./SomeRelativeDirectory
 <blockquote>
 Find-MissingFiles -d d:\dev\myprojects\sample
 </blockquote>
+
+Using when you install as an extension
+-----
+
+You will find "Find missing files" command in Tool menu, that command looks for missing files for every project in the solution. You also have "Find missing files" command in context menu for solution and project nodes in solution explorer, if you choose project it will be looking for missing files only for selected project. Missing files will be listed in the Vspniff output pane in the output window it should be opened automatically. 
+
+
+
+------
 
 Copyright
 --------
