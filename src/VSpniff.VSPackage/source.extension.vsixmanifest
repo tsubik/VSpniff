@@ -2,7 +2,7 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
     <Identity Id="8e79f6eb-ac7a-467f-b754-384ab70778b9" Version="1.0" Language="en-US" Publisher="Tomasz Subik" />
-    <DisplayName>VSpniff.VSPackage</DisplayName>
+    <DisplayName>VSpniff</DisplayName>
     <Description>Visual Studio project not included files finder</Description>
   </Metadata>
   <Installation InstalledByMsi="false">

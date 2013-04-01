@@ -44,7 +44,7 @@ namespace VSpniff.Core
         public static Config Default = new Config
         {
             Mode = ConfigFileMode.Override, //doesn't really matter which mode you choose in default config
-            ExcludedExtensions = "user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib",
+            ExcludedExtensions = "user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib, scc",
             ExcludedDirs = "bin, obj"
         };
     }

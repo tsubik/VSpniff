@@ -102,10 +102,6 @@
  
   </Commands>
 
-
-
-
-
   <Symbols>
     <!-- This is the package guid. -->
     <GuidSymbol name="guidVSpniff_VSPackagePkg" value="{8e79f6eb-ac7a-467f-b754-384ab70778b9}" />
