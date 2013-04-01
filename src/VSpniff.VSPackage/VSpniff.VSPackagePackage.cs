@@ -70,14 +70,79 @@ namespace VSpniff.VSPackage
             {
                 // Create the command for the menu item.
                 CommandID menuCommandID = new CommandID(GuidList.guidVSpniff_VSPackageCmdSet, (int)PkgCmdIDList.cmdidFindMissingFiles);
-                MenuCommand menuItem = new MenuCommand(MenuItemCallback, menuCommandID );
+                MenuCommand menuItem = new MenuCommand(FindForProjectCallback, menuCommandID );
                 mcs.AddCommand( menuItem );
+
+                menuCommandID = new CommandID(GuidList.guidVSpniff_VSPackageCmdSet, (int)PkgCmdIDList.cmdidFindMissingFilesAll);
+                menuItem = new MenuCommand(FindAllCallback, menuCommandID);
+                mcs.AddCommand(menuItem);
             }
             owp = null;
             dte = (DTE)GetService(typeof(DTE));
             CreateVSpniffOutputPane();
         }
         #endregion
+
+        private void ActivateOutputWindow()
+        {
+            Window window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
+            window.Activate();
+            owp.Activate();
+        }
+
+        private bool IfSolutionOpen()
+        {
+            if (dte.Solution.IsOpen)
+            {
+                return true;
+            }
+            else
+            {
+                owp.OutputLine("######## First, you should open your solution or project ##############");
+                return false;
+            }
+        }
+
+        private void FindAllCallback(object sender, EventArgs e)
+        {
+            ActivateOutputWindow();
+            if (IfSolutionOpen())
+            {
+                string dirPath = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
+                FindAllMissingReferences(dirPath);
+            }
+        }
+
+        private void FindForProjectCallback(object sender, EventArgs e)
+        {
+            ActivateOutputWindow();
+            if (IfSolutionOpen())
+            {
+                string dirPath = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
+                //checking if project is selected then taking project path
+                foreach (SelectedItem item in dte.SelectedItems)
+                {
+                    if (item.Project is Project)
+                    {
+                        dirPath = System.IO.Path.GetDirectoryName(item.Project.FullName);
+                        break;
+                    }
+                }
+                FindAllMissingReferences(dirPath);
+            }  
+        }
+
+        private void FindAllMissingReferences(string dirPath)
+        {
+            owp.OutputLine("######## Checking for missing references to files started ##############");
+            owp.OutputLine("Starting in directory: " + dirPath);
+            MissingFilesSearcher searcher = new MissingFilesSearcher();
+            searcher.MissingFileFound += new MissingFilesSearcher.StringEventHandler(searcher_MissingFileFound);
+            searcher.ProjectFound += new MissingFilesSearcher.StringEventHandler(searcher_ProjectFound);
+            searcher.Search(dirPath);
+            owp.OutputLine("######## Checking for missing references to files ends ##############");
+        }
+
 
         /// <summary>
         /// This function is the callback used to execute a command when the a menu item is clicked.
@@ -86,35 +151,7 @@ namespace VSpniff.VSPackage
         /// </summary>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            Window window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
-            window.Activate();
-            owp.Activate();
-            if (dte.Solution.IsOpen)
-            {
-                string dirPath = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
-                
-                //checking if project is selected then taking project path
-                foreach(SelectedItem item in dte.SelectedItems)
-                {
-                    if(item.Project is Project)
-                    {
-                        dirPath = System.IO.Path.GetDirectoryName(item.Project.FullName); 
-                        break;
-                    }
-                }
-
-                owp.OutputLine("######## Checking for missing references to files started ##############");
-                owp.OutputLine("Starting in directory: " + dirPath);
-                MissingFilesSearcher searcher = new MissingFilesSearcher();
-                searcher.MissingFileFound += new MissingFilesSearcher.StringEventHandler(searcher_MissingFileFound);
-                searcher.ProjectFound += new MissingFilesSearcher.StringEventHandler(searcher_ProjectFound);
-                searcher.Search(dirPath);
-                owp.OutputLine("######## Checking for missing references to files ends ##############");
-            }
-            else
-            {
-                owp.OutputLine("######## First, you should open your solution or project ##############");
-            }
+            
         }
 
         void searcher_ProjectFound(object sender, string e)
