@@ -69,7 +69,7 @@ namespace VSpniff.Core
                 XmlNamespaceManager nm = new XmlNamespaceManager(doc.NameTable);
                 nm.AddNamespace("x", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-                var projectfiles = doc.SelectNodes(@"/x:Project/x:ItemGroup/*[self::x:Compile or self::x:Content or self::x:None or self::x:PostDeploy or self::x:PreDeploy or self::x:RefactorLog
+                var projectfiles = doc.SelectNodes(@"/x:Project/x:ItemGroup/*[self::x:Build or self::x:Compile or self::x:Content or self::x:None or self::x:PostDeploy or self::x:PreDeploy or self::x:RefactorLog
                     or self::x:EmbeddedResource or self::x:Page or self::x:Resource or self::x:CodeAnalysisDictionary or self::x:ApplicationDefinition
                     or self::x:SplashScreen or self::x:DesignData or self::x:DesignDataWithDesignTimeCreatableTypes or self::x:EntityDeploy or self::x:XamlAppDef]/@Include", nm)
                     .Cast<XmlNode>()
