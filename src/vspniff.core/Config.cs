@@ -19,6 +19,20 @@ namespace VSpniff.Core
 			return config;
 		}
 
+		public void Merge(Config config)
+		{
+			if (config.Mode == ConfigFileMode.Override)
+			{
+				ExcludedExtensions = config.ExcludedExtensions;
+				ExcludedDirs = config.ExcludedDirs;
+			}
+			else if (config.Mode == ConfigFileMode.Append)
+			{
+				ExcludedDirs = ExcludedDirs.Union(config.ExcludedDirs).ToArray();
+				ExcludedExtensions = ExcludedExtensions.Union(config.ExcludedExtensions).ToArray();
+			}
+		}
+
         public static Config Default = new Config
         {
 			Mode = ConfigFileMode.Override, //doesn't really matter which mode you choose in default config

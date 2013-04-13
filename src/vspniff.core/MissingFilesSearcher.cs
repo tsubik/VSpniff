@@ -97,15 +97,7 @@ namespace VSpniff.Core
             if (configFile != null)
             {
                 Config newConfig = Config.Load(configFile.FullName);
-                if (newConfig.Mode == ConfigFileMode.Override)
-                {
-                    currentConfig = newConfig;
-                }
-                else if (newConfig.Mode == ConfigFileMode.Append)
-                {
-					currentConfig.ExcludedDirs = currentConfig.ExcludedDirs.Union(newConfig.ExcludedDirs).ToArray();
-					currentConfig.ExcludedExtensions = currentConfig.ExcludedExtensions.Union(newConfig.ExcludedExtensions).ToArray();
-                }
+				currentConfig.Merge(newConfig);
             }
         }
 
