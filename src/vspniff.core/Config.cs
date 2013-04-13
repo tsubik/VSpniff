@@ -10,8 +10,8 @@ namespace VSpniff.Core
     public class Config
     {
         public ConfigFileMode Mode { get; set; }
-        public string ExcludedExtensions { get; set; }
-        public string ExcludedDirs { get; set; }
+        public string[] ExcludedExtensions { get; set; }
+        public string[] ExcludedDirs { get; set; }
 
         public static Config Load(string fileName)
         {
@@ -47,11 +47,11 @@ namespace VSpniff.Core
 				}
 				else if (workline.StartsWith("excludedextensions:"))
 				{
-					config.ExcludedExtensions = workline.Replace("excludedextensions:", "");
+					config.ExcludedExtensions = workline.Replace("excludedextensions:", "").Replace(" ","").Split(',');
 				}
 				else if (line.ToLower().StartsWith("excludeddirs:"))
 				{
-					config.ExcludedDirs = workline.Replace("excludeddirs:", "");
+					config.ExcludedDirs = workline.Replace("excludeddirs:", "").Replace(" ","").Split(',');
 				}
 			}
 			return config;
@@ -59,9 +59,9 @@ namespace VSpniff.Core
 
         public static Config Default = new Config
         {
-            Mode = ConfigFileMode.Override, //doesn't really matter which mode you choose in default config
-            ExcludedExtensions = "user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib, scc",
-            ExcludedDirs = "bin, obj"
+			Mode = ConfigFileMode.Override, //doesn't really matter which mode you choose in default config
+            ExcludedExtensions = "user,csproj,aps,pch,vspscc,vssscc,ncb,suo,tlb,tlh,bak,log,lib,scc".Split(','),
+            ExcludedDirs = "bin,obj".Split(',')
         };
     }
 

@@ -28,15 +28,13 @@ namespace VSpniff.Core
         {
             string relativeDirPath = dir.FullName.Replace(projectPath + "\\", "");
             LookForConfigFileAndMaybeChangeConfiguration(dir, ref currentConfig);
-            List<string> excludedDirs = currentConfig.ExcludedDirs.Split(',').Select(x => x.Trim()).ToList();
-            List<string> excludedExtensions = currentConfig.ExcludedExtensions.Split(',').Select(x => x.Trim()).ToList();
-            if (!excludedDirs.Any(x => relativeDirPath.StartsWith(x)))
+            if (!currentConfig.ExcludedDirs.Any(x => relativeDirPath.StartsWith(x)))
             {
                 foreach (FileInfo file in dir.GetFiles())
                 {
                     string relativeFilePath = file.FullName.Replace(projectPath + "\\", "");
 
-                    if (!excludedExtensions.Any(x => x == file.Extension.TrimStart(new char[] { '.' })))
+					if (!currentConfig.ExcludedExtensions.Any(x => x == file.Extension.TrimStart(new char[] { '.' })))
                     {
                         if (!projectFiles.Contains(relativeFilePath))
                         {
@@ -105,17 +103,8 @@ namespace VSpniff.Core
                 }
                 else if (newConfig.Mode == ConfigFileMode.Append)
                 {
-                    currentConfig.ExcludedDirs =
-                        (currentConfig.ExcludedDirs + newConfig.ExcludedDirs)
-                        .Split(',')
-                        .Distinct()
-                        .ToString(',');
-
-                    currentConfig.ExcludedExtensions =
-                        (currentConfig.ExcludedExtensions + newConfig.ExcludedExtensions)
-                        .Split(',')
-                        .Distinct()
-                        .ToString(',');
+					currentConfig.ExcludedDirs = currentConfig.ExcludedDirs.Union(newConfig.ExcludedDirs).ToArray();
+					currentConfig.ExcludedExtensions = currentConfig.ExcludedExtensions.Union(newConfig.ExcludedExtensions).ToArray();
                 }
             }
         }
