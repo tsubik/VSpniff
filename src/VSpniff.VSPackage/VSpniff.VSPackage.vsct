@@ -67,7 +67,7 @@
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidVSpniff_VSPackageCmdSet" id="cmdidFindMissingFilesAll" priority="0x0100" type="Button">
         <Parent guid="guidVSpniff_VSPackageCmdSet" id="MyMenuGroup" />    
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPicSearch" />
         <Strings>
           <ButtonText>Find missing files</ButtonText>
         </Strings>
@@ -75,14 +75,14 @@
       
       <Button guid="guidVSpniff_VSPackageCmdSet" id="cmdidFindMissingFiles" priority="0x0100" type="Button">
         <Parent guid="guidVSpniff_VSPackageCmdSet" id="ContextMenuProjNodeGroup" />    
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPicSearch" />
         <Strings>
           <ButtonText>Find missing files</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidVSpniff_VSPackageCmdSet" id="cmdidFindMissingFiles" priority="0x0100" type="Button">
         <Parent guid="guidVSpniff_VSPackageCmdSet" id="ContextMenuSolnNodeGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPicSearch" />
         <Strings>
           <ButtonText>Find missing files</ButtonText>
         </Strings>
