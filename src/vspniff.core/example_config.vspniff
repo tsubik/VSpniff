@@ -1,0 +1,5 @@
+﻿{
+	"mode": "override",
+	"excludedextensions": "user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib, scc",
+	"excludeddirs": "bin, obj"
+}

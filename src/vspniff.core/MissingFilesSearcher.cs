@@ -98,8 +98,7 @@ namespace VSpniff.Core
             FileInfo configFile = currentDir.GetFiles().Where(f => f.Name.ToLower().EndsWith(".vspniff")).FirstOrDefault();
             if (configFile != null)
             {
-                Config newConfig = new Config();
-                newConfig.Load(configFile.FullName);
+                Config newConfig = Config.Load(configFile.FullName);
                 if (newConfig.Mode == ConfigFileMode.Override)
                 {
                     currentConfig = newConfig;
