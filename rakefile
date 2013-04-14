@@ -1,0 +1,64 @@
+require 'fileutils'
+require 'albacore'
+
+def get_version
+  ENV['BUILD_NUMBER'] || '1.2.0.0'
+end
+
+task :default => 'build:all'
+
+namespace :source do
+  # task :nhibernate_version, :nhibernate_version do |t,args|
+  #   args.with_defaults :nhibernate_version => ENV['nhibernate_version'] || NH_VERSION
+    
+  #   raise "Unknown NHibernate version #{args.nhibernate_version} (check your tools/NHibernate folder)" unless File.directory? "tools/NHibernate/#{args.nhibernate_version}"
+    
+  #   # clear out existing selected nh version
+  #   files_to_delete = Dir["tools/NHibernate/*.*"].reject {|f| File.directory? f }
+  #   files_to_delete.each {|f| File.delete f }
+    
+  #   # copy specific nh version files to the main directory
+  #   files_to_copy = Dir["tools/NHibernate/#{args.nhibernate_version}/*.*"]
+  #   files_to_copy.each {|f| FileUtils.copy f, "tools/NHibernate/" }
+  # end
+
+  desc 'Compile the source'
+  msbuild :compile do |msb,args|
+    msb.properties = {
+      configuration: :Release,
+      WarningLevel: 0,
+    }
+    msb.targets [:Clean, :Build]
+    msb.solution = 'src/Vspniff.sln'
+  end
+end
+
+namespace :tests do
+  desc 'Run all tests'
+  task :all => [:nunit]
+  
+  desc 'Run NUnit tests'
+  nunit :nunit do |nunit|
+    nunit.command = 'tools/nunit/nunit-console-x86.exe'
+    nunit.assemblies 'src/Vspniff.Tests/bin/Release/Vspniff.Tests.dll'
+  end
+end
+
+namespace :build do
+  desc 'Run full build including tests'
+  task :all => ['source:compile', 'tests:all'] do
+    # puts 'Copying output to build directory'
+    #   Dir.mkdir 'build' unless File.exist? 'build'
+    #   Dir.glob 'src/FluentNHibernate/bin/Release/*.{dll,pdb,xml}' do |path|
+    #     copy path, 'build' if File.file? path
+    #   end
+    
+    puts 'Build complete'
+  end
+end
+
+task :sln do
+  Thread.new do
+    system "devenv src/Vspniff.sln"
+  end
+end
