@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using VSpniff.Core;
+using VSpniff.Tests.Helpers;
 
-namespace VSpniff.Test
+namespace VSpniff.Tests
 {
 	[TestFixture]
 	public class ConfigTests
@@ -38,14 +39,8 @@ namespace VSpniff.Test
 			string[] ResultExcludedExtensions = new string[] { "bat", "exe", "com", "bin", "zip" };
 
 			_config.Merge(_config2);
-			_config.ExcludedDirs.ToList().ForEach((elem) =>
-			{
-				Assert.AreEqual(true, ResultExcludedDirs.Where(x => x == elem).Count() == 1);
-			});
-			_config.ExcludedExtensions.ToList().ForEach((elem) =>
-			{
-				Assert.AreEqual(true, ResultExcludedExtensions.Where(x => x == elem).Count() == 1);
-			});
+			AssertHelper.AreEqual(_config.ExcludedDirs, ResultExcludedDirs);
+			AssertHelper.AreEqual(_config.ExcludedExtensions, ResultExcludedExtensions);
 		}
 
 		[Test]
@@ -56,14 +51,8 @@ namespace VSpniff.Test
 			string[] ResultExcludedExtensions = new string[] { "exe", "bin", "zip" };
 
 			_config.Merge(_config2);
-			_config.ExcludedDirs.ToList().ForEach((elem) =>
-			{
-				Assert.AreEqual(true, ResultExcludedDirs.Where(x => x == elem).Count() == 1);
-			});
-			_config.ExcludedExtensions.ToList().ForEach((elem) =>
-			{
-				Assert.AreEqual(true, ResultExcludedExtensions.Where(x => x == elem).Count() == 1);
-			});
+			AssertHelper.AreEqual(_config.ExcludedDirs, ResultExcludedDirs);
+			AssertHelper.AreEqual(_config.ExcludedExtensions, ResultExcludedExtensions);
 		}
 	}
 }
