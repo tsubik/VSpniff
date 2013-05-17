@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace VSpniff.Core
 {
@@ -76,20 +77,15 @@ namespace VSpniff.Core
             {
                 string projectPath = projectFile.DirectoryName;
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(projectFile.FullName);
-                XmlNamespaceManager nm = new XmlNamespaceManager(doc.NameTable);
-                nm.AddNamespace("x", "http://schemas.microsoft.com/developer/msbuild/2003");
+				XDocument doc = XDocument.Load(projectFile.FullName);
+				XNamespace vsNamespace = Constants.VisualStudioProjectFileXmlNamespace;
 
-                var projectfiles = doc.SelectNodes(@"/x:Project/x:ItemGroup/*[self::x:Build or self::x:Compile or self::x:Content or self::x:None or self::x:PostDeploy or self::x:PreDeploy or self::x:RefactorLog
-                    or self::x:EmbeddedResource or self::x:Page or self::x:Resource or self::x:CodeAnalysisDictionary or self::x:ApplicationDefinition
-                    or self::x:SplashScreen or self::x:DesignData or self::x:DesignDataWithDesignTimeCreatableTypes or self::x:EntityDeploy or self::x:XamlAppDef]/@Include", nm)
-                    .Cast<XmlNode>()
-                    .Select(x => x.Value)
-                    .ToArray();
+				var filesIncludedInCurrentProject = doc.Element(vsNamespace + "Project")
+					.Descendants(vsNamespace + "ItemGroup")
+					.SelectMany(x => x.Elements().Where(y => y.Name.LocalName.In(Constants.VisualStudioBuildActions)).Select(y => y.Attribute("Include").Value)).ToArray();
 
 				GenerateMessage("----Project found : " + projectFile.Name);
-                LookForProjectMissingFiles(projectfiles, projectPath, dir, currentConfig);
+                LookForProjectMissingFiles(filesIncludedInCurrentProject, projectPath, dir, currentConfig);
             }
 
             if (projectFiles == null || projectFiles.Count() == 0)
