@@ -83,6 +83,24 @@ namespace VSpniff.VSPackage
         }
         #endregion
 
+		private void CreateVSpniffOutputPane()
+		{
+			Window window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
+			OutputWindow outputWindow = (OutputWindow)window.Object;
+			foreach (OutputWindowPane pane in outputWindow.OutputWindowPanes)
+			{
+				if (pane.Name == "VSpniff")
+				{
+					owp = pane;
+					break;
+				}
+			}
+			if (owp == null)
+			{
+				owp = outputWindow.OutputWindowPanes.Add("VSpniff");
+			}
+		}
+
         private void ActivateOutputWindow()
         {
             Window window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
@@ -134,41 +152,16 @@ namespace VSpniff.VSPackage
 
         private void FindAllMissingReferences(string dirPath)
         {
-            owp.OutputLine("######## Checking for missing references to files started ##############");
-            owp.OutputLine("Starting in directory: " + dirPath);
             MissingFilesSearcher searcher = new MissingFilesSearcher();
-            searcher.MissingFileFound += new MissingFilesSearcher.StringEventHandler(searcher_MissingFileFound);
-            searcher.ProjectFound += new MissingFilesSearcher.StringEventHandler(searcher_ProjectFound);
+            searcher.NewMessage += new MissingFilesSearcher.StringEventHandler(searcher_NewMessage);
             searcher.Search(dirPath);
-            owp.OutputLine("######## Checking for missing references to files ends ##############");
         }
 
-        void searcher_ProjectFound(object sender, string e)
+		void searcher_NewMessage(object sender, string message)
         {
-            owp.OutputLine("----Project found : " + e);
+            owp.OutputLine(message);
         }
 
-        void searcher_MissingFileFound(object sender, string e)
-        {
-            owp.OutputLine("Potentially missing file " + e);
-        }
 
-        private void CreateVSpniffOutputPane()
-        {
-            Window window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
-            OutputWindow outputWindow = (OutputWindow)window.Object;
-            foreach (OutputWindowPane pane in outputWindow.OutputWindowPanes)
-            {
-                if (pane.Name == "VSpniff")
-                {
-                    owp = pane;
-                    break;
-                }
-            }
-            if (owp == null)
-            {
-                owp = outputWindow.OutputWindowPanes.Add("VSpniff");
-            }
-        }
     }
 }

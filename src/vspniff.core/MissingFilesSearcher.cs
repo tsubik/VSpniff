@@ -10,19 +10,36 @@ namespace VSpniff.Core
     public class MissingFilesSearcher
     {
         public delegate void StringEventHandler(object sender, string value); 
-        public event StringEventHandler MissingFileFound;
-        public event StringEventHandler ProjectFound;
+        public event StringEventHandler NewMessage;
+
+		private void GenerateMessage(string message)
+		{
+			if (NewMessage != null)
+			{
+				NewMessage(this, message);
+			}
+		}
 
         public MissingFilesSearcher()
         {
             
         }
 
-        public void Search(string directoryPath)
-        {
-            DirectoryInfo dir = new DirectoryInfo(directoryPath);
-            LookForProjectFile(dir, Config.Default);
-        }
+		public void Search(string directoryPath)
+		{
+			if (Directory.Exists(directoryPath))
+			{
+				GenerateMessage("######## Checking for missing references to files started ##############");
+				GenerateMessage("Starting in directory: " + directoryPath);
+				DirectoryInfo dir = new DirectoryInfo(directoryPath);
+				LookForProjectFile(dir, Config.Default);
+				GenerateMessage("######## Checking for missing references to files ends ##############");
+			}
+			else
+			{
+				throw new DirectoryNotFoundException(string.Format("Directory {0} doesn't exists", directoryPath));
+			}
+		}
 
         private void LookForProjectMissingFiles(string[] projectFiles, string projectPath, DirectoryInfo dir, Config currentConfig)
         {
@@ -38,10 +55,7 @@ namespace VSpniff.Core
                     {
                         if (!projectFiles.Contains(relativeFilePath))
                         {
-                            if (MissingFileFound != null)
-                            {
-                                MissingFileFound(this, relativeFilePath);
-                            }
+							GenerateMessage("Potentially missing file " + relativeFilePath);
                         }
                     }
                 }
@@ -74,10 +88,7 @@ namespace VSpniff.Core
                     .Select(x => x.Value)
                     .ToArray();
 
-                if (ProjectFound != null)
-                {
-                    ProjectFound(this, projectFile.Name);
-                }
+				GenerateMessage("----Project found : " + projectFile.Name);
                 LookForProjectMissingFiles(projectfiles, projectPath, dir, currentConfig);
             }
 
