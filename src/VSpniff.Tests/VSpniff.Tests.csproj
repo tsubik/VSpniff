@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ConfigTests.cs" />
     <Compile Include="Helpers\AssertHelper.cs" />
+    <Compile Include="MissingFilesSearcherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -45,7 +45,7 @@ namespace VSpniff.Core
         private void LookForProjectMissingFiles(string[] projectFiles, string projectPath, DirectoryInfo dir, Config currentConfig)
         {
             string relativeDirPath = dir.FullName.Replace(projectPath + "\\", "");
-            LookForConfigFileAndMaybeChangeConfiguration(dir, ref currentConfig);
+            LookForConfigFileAndMaybeChangeConfiguration(dir, currentConfig);
             if (!currentConfig.ExcludedDirs.Any(x => relativeDirPath.StartsWith(x)))
             {
                 foreach (FileInfo file in dir.GetFiles())
@@ -71,7 +71,7 @@ namespace VSpniff.Core
         {
             var projectFiles = dir.GetFiles().Where(f => f.Extension.In(".csproj", ".vbproj", ".fsproj", ".sqlproj"));
             
-            LookForConfigFileAndMaybeChangeConfiguration(dir, ref currentConfig);
+            LookForConfigFileAndMaybeChangeConfiguration(dir, currentConfig);
 
             foreach (var projectFile in projectFiles)
             {
@@ -97,7 +97,7 @@ namespace VSpniff.Core
             }
         }
 
-        private void LookForConfigFileAndMaybeChangeConfiguration(DirectoryInfo currentDir, ref Config currentConfig)
+        private void LookForConfigFileAndMaybeChangeConfiguration(DirectoryInfo currentDir, Config currentConfig)
         {
             //look for any file with this extension
             FileInfo configFile = currentDir.GetFiles().Where(f => f.Name.ToLower().EndsWith(".vspniff")).FirstOrDefault();

@@ -39,8 +39,8 @@ namespace VSpniff.Tests
 			string[] ResultExcludedExtensions = new string[] { "bat", "exe", "com", "bin", "zip" };
 
 			_config.Merge(_config2);
-			AssertHelper.AreEqual(_config.ExcludedDirs, ResultExcludedDirs);
-			AssertHelper.AreEqual(_config.ExcludedExtensions, ResultExcludedExtensions);
+			AssertHelper.AreEqualByContent(_config.ExcludedDirs, ResultExcludedDirs);
+			AssertHelper.AreEqualByContent(_config.ExcludedExtensions, ResultExcludedExtensions);
 		}
 
 		[Test]
@@ -51,8 +51,8 @@ namespace VSpniff.Tests
 			string[] ResultExcludedExtensions = new string[] { "exe", "bin", "zip" };
 
 			_config.Merge(_config2);
-			AssertHelper.AreEqual(_config.ExcludedDirs, ResultExcludedDirs);
-			AssertHelper.AreEqual(_config.ExcludedExtensions, ResultExcludedExtensions);
+			AssertHelper.AreEqualByContent(_config.ExcludedDirs, ResultExcludedDirs);
+			AssertHelper.AreEqualByContent(_config.ExcludedExtensions, ResultExcludedExtensions);
 		}
 	}
 }
