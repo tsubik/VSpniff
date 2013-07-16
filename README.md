@@ -87,7 +87,7 @@ Only what do you have to do is add a simple file to your main solution directory
 
 
 Sample config file (also this is a default hard-coded configuration so you do not have to add any file if you happy with below configuration)<br>
-All config file must have .vspniff extensions
+All config file must have .vspniff extensions and be in like a JSON configuration file format
 
 config.vspniff
 <blockquote>
@@ -100,9 +100,11 @@ config.vspniff
 #excludedExtensions - files with these extensions will not be listed as missing files<br>
 #excludedDirs - program will not be looking in these locations for missing files<br>
 <br>
-mode: override<br>
-excludedExtensions: user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib<br>
-excludedDirs: bin, obj<br>
+{
+  "mode": "override",
+	"excludedextensions": "user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib, scc",
+	"excludeddirs": "bin, obj"
+}
 </blockquote>
 
 Using when you install as a powershell cmdlet
