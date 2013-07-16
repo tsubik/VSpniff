@@ -100,10 +100,10 @@ config.vspniff
 #excludedExtensions - files with these extensions will not be listed as missing files<br>
 #excludedDirs - program will not be looking in these locations for missing files<br>
 <br>
-{
-  "mode": "override",
-	"excludedextensions": "user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib, scc",
-	"excludeddirs": "bin, obj"
+{<br>
+  "mode": "override",<br>
+  "excludedextensions": "user, csproj, aps, pch, vspscc, vssscc, ncb, suo, tlb, tlh, bak, log, lib, scc",<br>
+  "excludeddirs": "bin, obj"<br>
 }
 </blockquote>
 
